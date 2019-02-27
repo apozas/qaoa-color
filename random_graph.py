@@ -1,7 +1,7 @@
 import numpy as np
 import numpy.random as rand
 
-def random_graph(n=3, edge_prob=3, seed=None):
+def random_graph(n=3, edge_prob=1, seed=None):
     """Generate random Erdos-Renyi graph for MaxCut.
 
     Args:
