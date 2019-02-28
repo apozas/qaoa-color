@@ -122,26 +122,3 @@ class constrainedQAOAVarForm(QAOAVarForm):
             )
         else:
             self._mixer_operator = mixer_operator
-          
-    def construct_circuit(self, angles):
-        if not len(angles) == self.num_parameters:
-            raise ValueError('Incorrect number of angles: expecting {}, but {} given.'.format(
-                self.num_parameters, len(angles)
-            ))
-        circuit = QuantumCircuit()
-        if self._initial_state:
-            circuit += self._initial_state
-        if len(circuit.qregs) == 0:
-            q = QuantumRegister(self._cost_operator.num_qubits, name='q')
-            circuit.add_register(q)
-        elif len(circuit.qregs) == 1:
-            q = circuit.qregs[0]
-        else:
-            raise NotImplementedError
-        circuit.u2(0, np.pi, q)
-        for idx in range(self._p):
-            beta, gamma = angles[idx], angles[idx + self._p]
-            circuit += self._cost_operator.evolve(None, gamma, 'circuit', 1, quantum_registers=q)
-            circuit += self._mixer_operator.evolve(None, beta, 'circuit', 1, quantum_registers=q)
-        return circuit    
-      
