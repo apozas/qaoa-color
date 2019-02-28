@@ -1,5 +1,5 @@
 # qaoa-color
-Qiskit camp 2019 hackathon: Using QAOA for solving the graph coloring problem
+Qiskit camp 2019 hackathon: Using constrained QAOA for solving the graph coloring problem
 
 Important files:
 - [constrainedqaoa.py](https://github.com/apozas/qaoa-color/blob/master/constrainedqaoa.py): modified QAOA class that allows for setting an arbitrary mixer Hamiltonian
